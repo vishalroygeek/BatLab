@@ -5,9 +5,11 @@
     <color name="colorAccent">#2C3335</color>
     <color name="colorHeadingText">#2C3335</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorProgress">#E6E6E6</color>
     <color name="colorEditText">#2C3335</color>
     <color name="colorEditTextHint">#8A2C3335</color>
     <color name="colorCursor">#2C3335</color>
     <color name="colorTimer">#CCE44236</color>
     <color name="colorSubmitBtn">#36383D</color>
+    <color name="colorLoaderBackground">#cc232323</color>
 </resources>
