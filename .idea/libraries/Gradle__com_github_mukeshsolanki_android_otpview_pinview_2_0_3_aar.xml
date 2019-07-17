@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.mukeshsolanki:android-otpview-pinview:2.0.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2ae407f012d2af54d28bd25516f2a83/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2ae407f012d2af54d28bd25516f2a83/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.mukeshsolanki/android-otpview-pinview/2.0.3/6c93cf5bd06bd74edca430b0203a140bb10a1531/android-otpview-pinview-2.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

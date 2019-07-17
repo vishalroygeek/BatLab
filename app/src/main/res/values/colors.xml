@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#141414</color>
+    <color name="colorAccent">#2C3335</color>
+    <color name="colorHeadingText">#2C3335</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorEditText">#2C3335</color>
+    <color name="colorEditTextHint">#8A2C3335</color>
+    <color name="colorCursor">#2C3335</color>
+    <color name="colorTimer">#CCE44236</color>
+    <color name="colorSubmitBtn">#36383D</color>
+</resources>
