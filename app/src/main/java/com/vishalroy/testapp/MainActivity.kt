@@ -4,7 +4,6 @@ import android.Manifest.permission
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraX
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -14,6 +13,8 @@ import com.vishalroy.testapp.Dialogs.CameraDialog
 import com.vishalroy.testapp.Helpers.Typefaces
 import com.vishalroy.testapp.Helpers.Utils
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -46,10 +47,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.submit_btn ->
-                CameraDialog(this).show()
-
+            R.id.submit_btn ->{
+                if (ccp.isValidFullNumber){
+                    showCameraDialog()
+                }else{
+                    Utils().snackBar(root_view, getString(R.string.invalid_number))
+                }
+            }
         }
+    }
+
+    private fun showCameraDialog(){
+        val cameraDialog = CameraDialog(this)
+        cameraDialog.setOnImageCapturedListener(object : CameraDialog.OnImageCaptured{
+            override fun onCaptured(file: File){
+                cameraDialog.dismiss()
+                
+            }
+        })
+        cameraDialog.show()
     }
 
     private fun askPermissions(){

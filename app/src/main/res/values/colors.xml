@@ -6,6 +6,7 @@
     <color name="colorHeadingText">#2C3335</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorProgress">#E6E6E6</color>
+    <color name="colorCameraButton">#BFFFFFFF</color>
     <color name="colorEditText">#2C3335</color>
     <color name="colorEditTextHint">#8A2C3335</color>
     <color name="colorCursor">#2C3335</color>
