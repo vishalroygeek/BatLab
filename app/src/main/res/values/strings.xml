@@ -22,6 +22,8 @@
     <string name="registering">Registering…</string>
     <string name="uploading_image">Uploading Image…</string>
     <string name="activity_reset">Activity reset</string>
+    <string name="thanks">Thanks</string>
+    <string name="logged">Entry logged 🎉</string>
 
     <!--Long messages-->
     <string name="welcome_message">Hey, glad to see you with BatLab. To proceed further, please enter your phone number and log your entry on our records.</string>
@@ -30,4 +32,9 @@
 
     <!--Others-->
     <string name="timer_default_text">30s</string>
+
+    <!--Do not touch !!!-->
+    <string name="hey">Hey</string>
+    <string name="glad_to_see">Glad to see you for the</string>
+    <string name="time_batlab">time with BatLab</string>
 </resources>

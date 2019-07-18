@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Handler
 import android.util.DisplayMetrics
 import android.util.Rational
@@ -27,7 +29,8 @@ class CameraDialog (var activity: Activity){
 
     private var dialog : Dialog = Dialog(activity)
     private var onImageCaptured: OnImageCaptured? = null
-
+    private lateinit var soundPool : SoundPool
+    private var shutterSound : Int = 0
 
     init {
         //Initializing dialog
@@ -35,6 +38,9 @@ class CameraDialog (var activity: Activity){
         dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCanceledOnTouchOutside(false)
+
+        //Initializing soundPool
+        initSoundPool()
 
         dialog.texture.post {
             startCamera()
@@ -50,6 +56,23 @@ class CameraDialog (var activity: Activity){
             Utils().snackBar(dialog.root_view, activity.getString(R.string.say_cheese))
         }, 1000)
 
+    }
+
+    private fun initSoundPool(){
+        //Configuring attributes
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        //Initializing
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(1)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        //Loading shutter sound to soundPool
+        shutterSound = soundPool.load(activity, R.raw.camera_shutter, 1)
     }
 
     private fun startCamera() {
@@ -101,6 +124,10 @@ class CameraDialog (var activity: Activity){
                         }
 
                         override fun onImageSaved(file: File) {
+                            //Playing shutter sound for feedback
+                            soundPool.play(shutterSound, 1F, 1F,0,0, 1F)
+
+                            //Sending the image for compression
                             compressAndSendCallback(file)
                         }
                     })
