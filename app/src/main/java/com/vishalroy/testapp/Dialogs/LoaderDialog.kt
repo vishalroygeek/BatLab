@@ -9,7 +9,7 @@ import com.vishalroy.testapp.R
 
 class LoaderDialog(context: Context) {
 
-    private var dialog: Dialog = Dialog(context)
+    var dialog: Dialog = Dialog(context)
 
     init {
         //Initializing dialog

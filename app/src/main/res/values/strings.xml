@@ -9,6 +9,19 @@
     <string name="capture_failed">Failed to capture your image</string>
     <string name="say_cheese">Say cheese 🧀</string>
     <string name="invalid_number">Invalid number :(</string>
+    <string name="went_wrong">Something went wrong</string>
+    <string name="submit">Submit</string>
+    <string name="verification_failed">Phone number verification failed</string>
+    <string name="verification_succeed">Phone number verified</string>
+    <string name="image_upload_failed">Failed to upload visitor\'s image</string>
+    <string name="checking_visitor">Checking visitor in records</string>
+    <string name="updating_visit">Updating visit in record</string>
+    <string name="sending_otp">Sending OTP…</string>
+    <string name="otp_sent">OTP sent</string>
+    <string name="signing_in">Signing In…</string>
+    <string name="registering">Registering…</string>
+    <string name="uploading_image">Uploading Image…</string>
+    <string name="activity_reset">Activity reset</string>
 
     <!--Long messages-->
     <string name="welcome_message">Hey, glad to see you with BatLab. To proceed further, please enter your phone number and log your entry on our records.</string>
@@ -16,5 +29,5 @@
     <string name="permission_warning">All permissions not granted. App may not function properly :(</string>
 
     <!--Others-->
-    <string name="timer_default_text">0s</string>
+    <string name="timer_default_text">30s</string>
 </resources>

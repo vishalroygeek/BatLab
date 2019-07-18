@@ -12,7 +12,6 @@ import android.util.Rational
 import android.util.Size
 import android.view.Surface
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.camera.core.*
 import androidx.lifecycle.LifecycleOwner
 import com.vishalroy.testapp.Helpers.Constants
@@ -35,9 +34,6 @@ class CameraDialog (var activity: Activity){
         dialog.setContentView(R.layout.dialog_camera)
         dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        //Making dialog non-cancellable
-        dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
 
         dialog.texture.post {
@@ -90,14 +86,17 @@ class CameraDialog (var activity: Activity){
 
         //Initializing shutter button
         dialog.click.setOnClickListener {
+            //This would avoid dialog from dismissing while processing image
+            dialog.setCancelable(false)
 
             //Creating the image file
-            val file = File(activity.getExternalFilesDir(Constants().IMAGES_FOLDER), "${System.currentTimeMillis()}.jpg")
+            val file = File(activity.getExternalFilesDir(Constants.IMAGES_FOLDER), "${System.currentTimeMillis()}.jpg")
 
             imageCapture.takePicture(file,
                     object : ImageCapture.OnImageSavedListener {
-                        override fun onError(error: ImageCapture.UseCaseError,
-                                message: String, exc: Throwable?) {
+                        override fun onError(error: ImageCapture.UseCaseError, message: String, exc: Throwable?) {
+                            //Making dialog cancellable if the image doesn't gets captured
+                            dialog.setCancelable(true)
                             Utils().snackBar(dialog.root_view, activity.getString(R.string.capture_failed))
                         }
 
@@ -133,14 +132,19 @@ class CameraDialog (var activity: Activity){
 
         GlobalScope.launch {
             //Lets compress it
-            val compressedFile : File = Compressor(activity)
-                .setQuality(60)
+            Compressor(activity)
+                .setQuality(30)
                 .setCompressFormat(Bitmap.CompressFormat.PNG)
                 .compressToFile(file)
 
-            //Dismissing dialog & sending callback
+            //Stopping the camera by unbinding from its lifecycle
+            CameraX.unbindAll()
+
+            //Dismissing loader
             loaderDialog.dismiss()
-            onImageCaptured?.onCaptured(compressedFile)
+
+            //Sending callback with compressed file
+            onImageCaptured?.onCaptured(file)
         }
     }
 
