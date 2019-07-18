@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.vishalroy.testapp.Dialogs.LoaderDialog
+import com.vishalroy.testapp.Dialogs.WelcomeDialog
 import com.vishalroy.testapp.Helpers.Constants
 import com.vishalroy.testapp.Models.Visitor
 import java.util.concurrent.TimeUnit
@@ -327,7 +328,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showWelcomeDialog(visitor: Visitor){
-        Utils().snackBar(root_view, visitor.number)
+        WelcomeDialog(this, visitor, this).show()
     }
 
     private fun showCameraDialog(){
@@ -396,7 +397,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }).check()
     }
 
-    private fun resetActivity(){
+    fun resetActivity(){
         //Signing out before resetting activity
         auth.signOut()
 

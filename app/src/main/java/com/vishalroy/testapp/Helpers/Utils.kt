@@ -15,4 +15,12 @@ class Utils {
        Snackbar.make(view,text, Snackbar.LENGTH_SHORT).show()
     }
 
+    fun convertToOrdinal(i: Int): String {
+        val sufixes = arrayOf("th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th")
+        when (i % 100) {
+            11, 12, 13 -> return i.toString() + "th"
+            else -> return i.toString() + sufixes[i % 10]
+        }
+    }
+
 }
