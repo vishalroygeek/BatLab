@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val auth = FirebaseAuth.getInstance()
     private var imageFile : File? = null
     private lateinit var loaderDialog : LoaderDialog
+    private lateinit var timerHandler : Handler
     private var verificationId : String? = null
     private var resendToken : PhoneAuthProvider.ForceResendingToken? = null
 
@@ -186,6 +187,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         loaderDialog.show()
+
+        //Revoking timer handler to avoid marking visitor as
+        //suspicious when signing in
+        timerHandler.removeMessages(0)
+
         Utils().snackBar(root_view, getString(R.string.signing_in))
 
         //Lets sign in with the provided credential
@@ -308,19 +314,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val totalTime = 30
         var seconds = 0
 
-        val handler = Handler(Looper.getMainLooper())
+        timerHandler = Handler(Looper.getMainLooper())
 
-        handler.post(object : Runnable {
+        timerHandler.post(object : Runnable {
             override fun run() {
                 if (seconds < totalTime){
                     seconds++
-                    handler.postDelayed(this, 1000)
+                    timerHandler.postDelayed(this, 1000)
 
                     //Updating timer text
                     timer.text = (totalTime-seconds).toString()+"s"
-                }else if (!loaderDialog.dialog.isShowing){
-                    //Doing the dialog showing check above to ensure that no process
-                    //is going on right now
+                }else{
+                    //If visitor wasn't able to give OTP in required time,
+                    //it will be marked as suspicious
                     markAsSuspiciousVisitor()
                 }
             }
