@@ -4,7 +4,7 @@ An app built with Kotlin, AndroidX & Firebase for an internship interview. This 
 
 **⭐ And yes, I got selected for the internship**
 
-##Demo
+## Demo
 
 ![BatLab Demo](https://github.com/vishalroygeek/BatLab/blob/master/demo.gif)
 
