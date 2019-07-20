@@ -6,7 +6,7 @@ An app built with Kotlin, AndroidX & Firebase for an internship interview. This 
 
 ##Demo
 
-![BatLab Demo](https://github.com/vishalroygeek/BatLab/demo.gif)
+![BatLab Demo](https://github.com/vishalroygeek/BatLab/blob/master/demo.gif)
 
 # LICENSE
 ___
