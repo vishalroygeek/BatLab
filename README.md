@@ -1,6 +1,6 @@
 # BatLab - A visitor logging app 🦇
 
-An app built with Kotlin, AndroidX & Firebase for an internship interview. This app creates & keeps a record of the visitors, and also marks the suspicious users. You are completely free to fork, modify & freely use this repository as per your needs.
+An app built with Kotlin, AndroidX & Firebase for an internship interview. This app creates & keeps a record of the visitors, and also marks the suspicious users. You are completely free to fork, modify & use this repository as per your needs.
 
 >And yes, I got selected for the internship 🌟
 
